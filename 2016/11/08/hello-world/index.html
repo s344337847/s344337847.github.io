@@ -84,15 +84,34 @@
 
 
 
-<meta name="description" content="未来多漫长再漫长还有期待">
-<meta property="og:type" content="website">
-<meta property="og:title" content="SeaOrange">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="要使用WebSQL 首先要了解规范中定义的三个核心方法：
+
+openDatabase：：这个方法使用现有的数据库或者新建的数据库创建一个数据库对象。
+transaction: 这个方法让我们能够控制一个事务，以及基于这种情况执行提交或者回滚。
+executeSql：这个方法用于执行实际的 SQL 查询。 .
+
+打开数据库或者创建一个数据库123456789101112var db = openDa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML5 - Web SQL Database 简单使用">
+<meta property="og:url" content="http://yoursite.com/2016/11/08/hello-world/index.html">
 <meta property="og:site_name" content="SeaOrange">
-<meta property="og:description" content="未来多漫长再漫长还有期待">
+<meta property="og:description" content="要使用WebSQL 首先要了解规范中定义的三个核心方法：
+
+openDatabase：：这个方法使用现有的数据库或者新建的数据库创建一个数据库对象。
+transaction: 这个方法让我们能够控制一个事务，以及基于这种情况执行提交或者回滚。
+executeSql：这个方法用于执行实际的 SQL 查询。 .
+
+打开数据库或者创建一个数据库123456789101112var db = openDa">
+<meta property="og:updated_time" content="2016-11-13T10:17:10.185Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SeaOrange">
-<meta name="twitter:description" content="未来多漫长再漫长还有期待">
+<meta name="twitter:title" content="HTML5 - Web SQL Database 简单使用">
+<meta name="twitter:description" content="要使用WebSQL 首先要了解规范中定义的三个核心方法：
+
+openDatabase：：这个方法使用现有的数据库或者新建的数据库创建一个数据库对象。
+transaction: 这个方法让我们能够控制一个事务，以及基于这种情况执行提交或者回滚。
+executeSql：这个方法用于执行实际的 SQL 查询。 .
+
+打开数据库或者创建一个数据库123456789101112var db = openDa">
 
 
 
@@ -113,10 +132,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/08/hello-world/"/>
 
 
-  <title> SeaOrange </title>
+  <title> HTML5 - Web SQL Database 简单使用 | SeaOrange </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -137,9 +156,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -218,9 +235,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -240,10 +257,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/11/08/hello-world/" itemprop="url">
-                  HTML5 - Web SQL Database 简单使用
-                </a>
+                HTML5 - Web SQL Database 简单使用
               
             
           </h1>
@@ -283,9 +297,7 @@
       
 
       
-        
-          
-            <p>要使用WebSQL 首先要了解规范中定义的三个核心方法：</p>
+        <p>要使用WebSQL 首先要了解规范中定义的三个核心方法：</p>
 <ul>
 <li>openDatabase：：这个方法使用现有的数据库或者新建的数据库创建一个数据库对象。</li>
 <li>transaction: 这个方法让我们能够控制一个事务，以及基于这种情况执行提交或者回滚。</li>
@@ -297,16 +309,20 @@
 <h1 id="删除一行数据"><a href="#删除一行数据" class="headerlink" title="删除一行数据"></a>删除一行数据</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">db.transaction(<span class="keyword">function</span>(tx) &#123;</div><div class="line">    tx.executeSql(<span class="string">'delete from LOGS where id=?'</span>, [1]]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <h1 id="查询所有数据"><a href="#查询所有数据" class="headerlink" title="查询所有数据"></a>查询所有数据</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">db.transaction(<span class="keyword">function</span>(tx) &#123;</div><div class="line">    tx.executeSql(<span class="string">'SELECT * FROM LOGS'</span>, [], <span class="keyword">function</span>(tx, results) &#123;</div><div class="line">        var len = results.rows.length,</div><div class="line">            i;</div><div class="line">        <span class="keyword">for</span> (i = 0; i &lt; len; i++) &#123;</div><div class="line">           //results.rows.item(i).id 就是所查询的id</div><div class="line">           //results.rows.item(i).log 就是所查询的<span class="built_in">log</span></div><div class="line">        &#125;</div><div class="line">    &#125;, null);</div><div class="line">&#125;);</div><div class="line">当然你也可以进行条件查询，写上对应的SQL语句,比如：</div><div class="line">tx.executeSql(<span class="string">'SELECT * FROM LOGS WHERE id = ?'</span>,[1], <span class="keyword">function</span>(tx, results)&#123;&#125;);</div><div class="line">[Demo](https://github.com/s344337847/Simple_WebSQL_Demo.git).</div></pre></td></tr></table></figure>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
@@ -317,16 +333,15 @@
 
       
       
-        <div class="post-eof"></div>
-      
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -334,6 +349,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -353,8 +372,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -390,6 +418,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#打开数据库或者创建一个数据库"><span class="nav-number">1.</span> <span class="nav-text">打开数据库或者创建一个数据库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加一行数据"><span class="nav-number">2.</span> <span class="nav-text">添加一行数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更改一行数据"><span class="nav-number">3.</span> <span class="nav-text">更改一行数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除一行数据"><span class="nav-number">4.</span> <span class="nav-text">删除一行数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查询所有数据"><span class="nav-number">5.</span> <span class="nav-text">查询所有数据</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -486,6 +525,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
