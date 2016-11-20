@@ -88,9 +88,7 @@
 
 openDatabase：：这个方法使用现有的数据库或者新建的数据库创建一个数据库对象。
 transaction: 这个方法让我们能够控制一个事务，以及基于这种情况执行提交或者回滚。
-executeSql：这个方法用于执行实际的 SQL 查询。 .
-
-打开数据库或者创建一个数据库123456789101112var db = openDa">
+executeSql：这个方法用于执行实际的 SQL 查询。 .">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTML5 - Web SQL Database 简单使用">
 <meta property="og:url" content="http://yoursite.com/2016/11/08/hello-world/index.html">
@@ -99,19 +97,15 @@ executeSql：这个方法用于执行实际的 SQL 查询。 .
 
 openDatabase：：这个方法使用现有的数据库或者新建的数据库创建一个数据库对象。
 transaction: 这个方法让我们能够控制一个事务，以及基于这种情况执行提交或者回滚。
-executeSql：这个方法用于执行实际的 SQL 查询。 .
-
-打开数据库或者创建一个数据库123456789101112var db = openDa">
-<meta property="og:updated_time" content="2016-11-13T10:17:10.185Z">
+executeSql：这个方法用于执行实际的 SQL 查询。 .">
+<meta property="og:updated_time" content="2016-11-20T09:48:31.958Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML5 - Web SQL Database 简单使用">
 <meta name="twitter:description" content="要使用WebSQL 首先要了解规范中定义的三个核心方法：
 
 openDatabase：：这个方法使用现有的数据库或者新建的数据库创建一个数据库对象。
 transaction: 这个方法让我们能够控制一个事务，以及基于这种情况执行提交或者回滚。
-executeSql：这个方法用于执行实际的 SQL 查询。 .
-
-打开数据库或者创建一个数据库123456789101112var db = openDa">
+executeSql：这个方法用于执行实际的 SQL 查询。 .">
 
 
 
@@ -303,11 +297,12 @@ executeSql：这个方法用于执行实际的 SQL 查询。 .
 <li>transaction: 这个方法让我们能够控制一个事务，以及基于这种情况执行提交或者回滚。</li>
 <li>executeSql：这个方法用于执行实际的 SQL 查询。 .</li>
 </ul>
+<a id="more"></a>
 <h1 id="打开数据库或者创建一个数据库"><a href="#打开数据库或者创建一个数据库" class="headerlink" title="打开数据库或者创建一个数据库"></a>打开数据库或者创建一个数据库</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var db = openDatabase(<span class="string">'mydb'</span>, <span class="string">'1.0'</span>, <span class="string">'Test DB'</span>, 2 * 1024 * 1024);</div><div class="line">  参数分别是：</div><div class="line">  1.数据库名</div><div class="line">  2.版本号</div><div class="line">  3.描述文本</div><div class="line">  4.数据库大小</div><div class="line">  5.创建回调</div><div class="line">  回调可以不写，当然你也可以写：</div><div class="line">  var db = openDatabase(<span class="string">'mydb'</span>, <span class="string">'1.0'</span>, <span class="string">'Test DB'</span>, 2 * 1024 * 1024,<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">    // TODO 数据库打开或创建完成</div><div class="line">  &#125;);</div><div class="line">  数据库创建完成后就可以进行数据的增删改查了</div></pre></td></tr></table></figure>
 <h1 id="添加一行数据"><a href="#添加一行数据" class="headerlink" title="添加一行数据"></a>添加一行数据</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">db.transaction(<span class="keyword">function</span>(tx) &#123;</div><div class="line">        tx.executeSql(<span class="string">'CREATE TABLE IF NOT EXISTS LOGS (id unique, log)'</span>);</div><div class="line">        tx.executeSql(<span class="string">'INSERT INTO LOGS (id, log) VALUES (?, ?)'</span>, 1, <span class="string">"javascript"</span>);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">这里我们先得到了一个事物transaction，再创建一个数据表，再进行数据的添加，当然数据的添加也可以这样：</div><div class="line">tx.executeSql(<span class="string">'INSERT INTO LOGS (id, log) VALUES (1, "javascript")'</span>);</div><div class="line">这样我们就添加了一行数据，如果你不懂SQL语句的话，建议先学习一下。</div></pre></td></tr></table></figure>
 <h1 id="更改一行数据"><a href="#更改一行数据" class="headerlink" title="更改一行数据"></a>更改一行数据</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">db.transaction(<span class="keyword">function</span>(tx) &#123;</div><div class="line">    tx.executeSql(<span class="string">'UPDATE LOGS SET log=? WHERE id=?'</span>, [1,<span class="string">"PHP"</span>]);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <h1 id="删除一行数据"><a href="#删除一行数据" class="headerlink" title="删除一行数据"></a>删除一行数据</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">db.transaction(<span class="keyword">function</span>(tx) &#123;</div><div class="line">    tx.executeSql(<span class="string">'delete from LOGS where id=?'</span>, [1]]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h1 id="查询所有数据"><a href="#查询所有数据" class="headerlink" title="查询所有数据"></a>查询所有数据</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">db.transaction(<span class="keyword">function</span>(tx) &#123;</div><div class="line">    tx.executeSql(<span class="string">'SELECT * FROM LOGS'</span>, [], <span class="keyword">function</span>(tx, results) &#123;</div><div class="line">        var len = results.rows.length,</div><div class="line">            i;</div><div class="line">        <span class="keyword">for</span> (i = 0; i &lt; len; i++) &#123;</div><div class="line">           //results.rows.item(i).id 就是所查询的id</div><div class="line">           //results.rows.item(i).log 就是所查询的<span class="built_in">log</span></div><div class="line">        &#125;</div><div class="line">    &#125;, null);</div><div class="line">&#125;);</div><div class="line">当然你也可以进行条件查询，写上对应的SQL语句,比如：</div><div class="line">tx.executeSql(<span class="string">'SELECT * FROM LOGS WHERE id = ?'</span>,[1], <span class="keyword">function</span>(tx, results)&#123;&#125;);</div><div class="line">[Demo](https://github.com/s344337847/Simple_WebSQL_Demo.git).</div></pre></td></tr></table></figure>
+<h1 id="查询所有数据"><a href="#查询所有数据" class="headerlink" title="查询所有数据"></a>查询所有数据</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">db.transaction(<span class="keyword">function</span>(tx) &#123;</div><div class="line">    tx.executeSql(<span class="string">'SELECT * FROM LOGS'</span>, [], <span class="keyword">function</span>(tx, results) &#123;</div><div class="line">        var len = results.rows.length,</div><div class="line">            i;</div><div class="line">        <span class="keyword">for</span> (i = 0; i &lt; len; i++) &#123;</div><div class="line">           //results.rows.item(i).id 就是所查询的id</div><div class="line">           //results.rows.item(i).log 就是所查询的<span class="built_in">log</span></div><div class="line">        &#125;</div><div class="line">    &#125;, null);</div><div class="line">&#125;);</div><div class="line">当然你也可以进行条件查询，写上对应的SQL语句,比如：</div><div class="line">tx.executeSql(<span class="string">'SELECT * FROM LOGS WHERE id = ?'</span>,[1], <span class="keyword">function</span>(tx, results)&#123;&#125;);</div><div class="line">[Demo] (https://github.com/s344337847/Simple_WebSQL_Demo.git).</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -329,6 +324,20 @@ executeSql：这个方法用于执行实际的 SQL 查询。 .
     <footer class="post-footer">
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/18/WebSocket/" rel="prev" title="WebSocket的简单使用">
+                WebSocket的简单使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
@@ -393,7 +402,7 @@ executeSql：这个方法用于执行实际的 SQL 查询。 .
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
